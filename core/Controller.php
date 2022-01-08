@@ -3,9 +3,11 @@
 class controller {
 
 	protected $db;
+	protected $lang;
 
 	public function __construct() {
 		global $config;
+		$this->lang = new Language();
 	}
 
 	public function loadView($viewName, $viewData = array()) {

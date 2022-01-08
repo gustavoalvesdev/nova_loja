@@ -1,1 +1,3 @@
-Conteúdo da página inicial
+<?= $this->lang->get('HOMECONTENT'); ?><br><br>
+
+<?= $frase; ?>

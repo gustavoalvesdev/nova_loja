@@ -14,6 +14,8 @@ class homeController extends controller {
 
 		$dados = array();
 
+		$dados['frase'] = $this->lang->get('SUBSCRIBETEXT', true);
+
 		$this->loadTemplate('home', $dados);
 
 	}
