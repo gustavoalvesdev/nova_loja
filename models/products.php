@@ -13,15 +13,31 @@ class Products extends Model {
             
             $array = $sql->fetchAll();
 
-            // foreach($array as $key => $item) {
+            foreach($array as $key => $item) {
 
+                $array[$key]['images'] = $this->getImagesByProductId($item['id']);
 
-
-            // }
-
+            }
         }
 
         return $array;
+    }
+
+    public function getImagesByProductId($id) {
+
+        $array = array();
+
+        $sql = "SELECT url FROM products_images WHERE id_product = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+
+        return $array;
+
     }
 
 }

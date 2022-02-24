@@ -1,3 +1,13 @@
-<?php 
+<div class="row">
+    <div class="col-sm-4">
+        
+        <?php $this->loadView('product_item', array()); ?>
 
-print_r($list);
+    </div>
+    <div class="col-sm-4">
+        ...
+    </div>
+    <div class="col-sm-4">
+        ...
+    </div>
+</div>
