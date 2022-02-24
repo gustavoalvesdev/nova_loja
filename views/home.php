@@ -1,3 +1,3 @@
-<?= $this->lang->get('HOMECONTENT'); ?><br><br>
+<?php 
 
-<?= $frase; ?>
+print_r($list);
