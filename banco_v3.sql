@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.42)
 # Base de Dados: nova_loja
-# Tempo de Geração: 2017-05-18 20:11:43 +0000
+# Tempo de Geração: 2017-06-12 12:49:42 +0000
 # ************************************************************
 
 
@@ -31,6 +31,17 @@ CREATE TABLE `brands` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `brands` WRITE;
+/*!40000 ALTER TABLE `brands` DISABLE KEYS */;
+
+INSERT INTO `brands` (`id`, `name`)
+VALUES
+	(1,'LG'),
+	(2,'Samsung'),
+	(3,'AOC');
+
+/*!40000 ALTER TABLE `brands` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump da tabela categories
@@ -45,6 +56,15 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+
+INSERT INTO `categories` (`id`, `sub`, `name`)
+VALUES
+	(6,NULL,'Monitor');
+
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump da tabela coupons
@@ -101,20 +121,6 @@ CREATE TABLE `pages` (
 
 
 
-# Dump da tabela products_images
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `products_images`;
-
-CREATE TABLE `products_images` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `id_product` int(11) NOT NULL,
-  `url` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
 # Dump da tabela products
 # ------------------------------------------------------------
 
@@ -138,6 +144,52 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+
+INSERT INTO `products` (`id`, `id_category`, `id_brand`, `name`, `description`, `stock`, `price`, `price_from`, `rating`, `featured`, `sale`, `bestseller`, `new_product`, `options`)
+VALUES
+	(1,6,1,'Monitor 21 polegadas','Alguma descrição do produto.',10,499,599,0,0,1,1,0,NULL),
+	(2,6,2,'Monitor 18 polegadas','Alguma outra descrição',10,399,999,0,0,0,1,0,NULL),
+	(3,6,2,'Monitor 19 polegadas','Alguma outra descrição',10,599,699,0,0,0,0,1,NULL),
+	(4,6,3,'Monitor 17 polegadas','Alguma outra descrição',10,779,900,0,0,0,0,0,NULL),
+	(5,6,1,'Monitor 20 polegadas','Alguma outra descrição',10,299,499,0,0,0,0,1,NULL),
+	(6,6,3,'Monitor 20 polegadas','Alguma outra descrição',10,699,0,0,0,0,0,0,NULL),
+	(7,6,3,'Monitor 19 polegadas','Alguma outra descrição',10,889,999,0,0,0,0,0,NULL),
+	(8,6,1,'Monitor 18 polegadas','Alguma outra descrição',10,599,699,0,0,0,0,0,NULL);
+
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump da tabela products_images
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `products_images`;
+
+CREATE TABLE `products_images` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(11) NOT NULL,
+  `url` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `products_images` WRITE;
+/*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
+
+INSERT INTO `products_images` (`id`, `id_product`, `url`)
+VALUES
+	(1,1,'1.jpg'),
+	(2,2,'2.jpg'),
+	(3,3,'3.jpg'),
+	(4,4,'4.jpg'),
+	(5,5,'1.jpg'),
+	(6,6,'3.jpg'),
+	(7,7,'7.jpg'),
+	(8,8,'7.jpg');
+
+/*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump da tabela products_options

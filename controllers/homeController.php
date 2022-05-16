@@ -25,7 +25,7 @@ class homeController extends controller {
 		}
 
 		$offset = ($currentPage * $limit) - $limit;
-
+			
 		$dados['list'] = $products->getList($offset, $limit);
 		$dados['totalItems'] = $products->getTotal();
 		$dados['numberOfPages'] = ceil($dados['totalItems'] / $limit);

@@ -2,7 +2,7 @@
 <?php
 
     $a = 0;
-
+	
     foreach($list as $product_item): 
 ?>
     <div class="col-sm-4">

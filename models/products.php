@@ -21,6 +21,7 @@ class Products extends Model {
         }
 
         return $array;
+
     }
 
     public function getTotal() {
