@@ -2,6 +2,20 @@
 
 class Products extends Model {
 
+    public function getListOfBrands() {
+
+        $array = array();
+
+        $sql = "SELECT id_brand, COUNT(id) AS c FROM products GROUP BY id_brand";
+        $sql = $this->db->query($sql);
+
+        if($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+
+    }
+
     public function getList($offset = 0, $limit = 3, $filters = array()) {
         $array = array();
 
