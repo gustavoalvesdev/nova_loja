@@ -1,5 +1,11 @@
 <?php 
 
+namespace Controllers;
+
+use Core\Controller;
+use Models\Products;
+use Models\Categories;
+
 class CategoriesController extends Controller {
 
 	private $user;

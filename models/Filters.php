@@ -1,5 +1,9 @@
 <?php 
 
+namespace Models;
+
+use Core\Model;
+
 class Filters extends Model {
 
     public function getFilters() {

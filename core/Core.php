@@ -1,5 +1,7 @@
 <?php 
 
+namespace Core;
+
 class Core {
 
 	public function run() {
@@ -13,7 +15,8 @@ class Core {
 			$url = explode('/', $url);
 			array_shift($url);
 
-			$currentController = ucfirst($url[0]).'Controller';
+			$currentControllerFile = ucfirst($url[0]).'Controller';
+			$currentController = 'Controllers\\' . ucfirst($url[0]).'Controller';
 			array_shift($url);
 
 			if (isset($url[0]) && $url[0] != '/') {
@@ -29,12 +32,13 @@ class Core {
 			}
 
 		}  else {
-			$currentController = 'HomeController';
+			$currentControllerFile = 'HomeController';
+			$currentController = 'Controllers\\' . $currentControllerFile;
 			$currentAction = 'index';
 		}
 
-		if (!file_exists('controllers/' . $currentController . '.php')) {
-			$currentController = 'NotFoundController';
+		if (!file_exists('controllers/' . $currentControllerFile . '.php')) {
+			$currentController = 'Controllers\\NotFoundController';
 			$currentAction = 'index';
 		}
 

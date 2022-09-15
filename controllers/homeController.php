@@ -1,5 +1,12 @@
 <?php 
 
+namespace Controllers;
+
+use Core\Controller;
+use Models\Products;
+use Models\Categories;
+use Models\Filters;
+
 class HomeController extends Controller {
 
 	private $user;

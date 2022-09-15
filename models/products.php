@@ -1,5 +1,9 @@
 <?php 
 
+namespace Models;
+
+use Core\Model;
+
 class Products extends Model {
 
     public function getListOfBrands() {

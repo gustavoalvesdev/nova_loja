@@ -1,5 +1,7 @@
 <?php 
 
+namespace Controllers;
+
 class LangController extends Controller {
 
 	public function __construct() {
