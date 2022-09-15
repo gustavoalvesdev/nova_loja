@@ -13,12 +13,12 @@ if (ENVIRONMENT == 'development') {
 	$config['host'] = 'localhost';
 	$config['dbuser'] = 'root';
 	$config['dbpass'] = '';
-} else {
-	define('BASE_URL', 'http://localhost/nova_loja/');
-	$config['dbname'] = 'nova_loja';
+} else if (ENVIRONMENT == 'production') {
+	define('BASE_URL', 'https://novalojab7web.000webhostapp.com/');
+	$config['dbname'] = 'id19575230_nova_loja';
 	$config['host'] = 'localhost';
-	$config['dbuser'] = 'root';
-	$config['dbpass'] = '';
+	$config['dbuser'] = 'id19575230_gustavo_loja';
+	$config['dbpass'] = 'u+Xb!)yNoX1mX6OT';
 }
 
 $config['default_lang'] = 'pt-br';

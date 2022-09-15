@@ -1,6 +1,6 @@
 <?php 
 
-class categoriesController extends controller {
+class CategoriesController extends Controller {
 
 	private $user;
 

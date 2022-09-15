@@ -1,6 +1,6 @@
 <?php 
 
-class langController extends controller {
+class LangController extends Controller {
 
 	public function __construct() {
 		parent::__construct();

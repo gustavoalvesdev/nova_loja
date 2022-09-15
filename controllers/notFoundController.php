@@ -1,6 +1,6 @@
 <?php 
 
-class notFoundController extends controller {
+class NotFoundController extends Controller {
 
 	public function __construct() {
 		parent::__construct();
