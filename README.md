@@ -5,7 +5,7 @@
 
 Projeto do Curso de PHP da B7Web, que consiste em uma loja virtual com PHP puro utilizando padrão MVC e banco de dados MySQL.
 
-#### Funcionalidades Extras e Implementações Adicionias
+#### Funcionalidades Extras e Implementações Adicionais
 
 Implementei algumas coisas nesse projeto, que não constam no projeto original
 
