@@ -136,6 +136,11 @@
 								<div class="filtercontent">
 									
 									<div class="filteritem">
+										<input type="checkbox" name="filter[star][]" value="1" id="filter_star1"> <label for="filter_star1">
+											<img src="<?php echo BASE_URL ?>assets/images/star.png" border="0" height="13">
+										</label>
+									</div>
+									<div class="filteritem">
 										<input type="checkbox" name="filter[star][]" value="2" id="filter_star2"> <label for="filter_star2">
 											<img src="<?php echo BASE_URL ?>assets/images/star.png" border="0" height="13">
 											<img src="<?php echo BASE_URL ?>assets/images/star.png" border="0" height="13">

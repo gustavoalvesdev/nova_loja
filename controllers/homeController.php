@@ -25,6 +25,8 @@ class HomeController extends Controller {
 		$categories = new Categories();
 		$f = new Filters();
 
+		$filters = array();
+
 		$currentPage = 1;
 		$offset = 0;
 		$limit = 3;
@@ -42,7 +44,7 @@ class HomeController extends Controller {
 
 		$dados['categories'] = $categories->getList();
 
-		$dados['filters'] = $f->getFilters();
+		$dados['filters'] = $f->getFilters($filters);
 
 
 		$this->loadTemplate('home', $dados);
