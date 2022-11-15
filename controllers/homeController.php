@@ -27,6 +27,8 @@ class HomeController extends Controller {
 
 		$filters = array();
 
+		$filters = array();
+
 		$currentPage = 1;
 		$offset = 0;
 		$limit = 3;

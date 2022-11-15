@@ -4,9 +4,11 @@ namespace Models;
 
 use Core\Model;
 
-class Filters extends Model {
+class Filters extends Model 
+{
 
-    public function getFilters($filters = array()) {
+    public function getFilters($filters = array()) 
+    {
 
         $products = new Products();
         $brands = new Brands();
@@ -14,8 +16,15 @@ class Filters extends Model {
         $array = array(
             'brands' => array(),
             'maxslider' => 1000,
-            'stars' => array(),
-            'sale' => false,
+            'stars' => array(
+                '0' => 0,
+                '1' => 0,
+                '2' => 0,
+                '3' => 0,
+                '4' => 0,
+                '5' => 0
+            ),
+            'sale' => '0',
             'options' => array()
         );
 
@@ -40,6 +49,24 @@ class Filters extends Model {
 
         // Criando filtro de Preço
         $array['maxslider'] = $products->getMaxPrice($filters);
+
+        // Criando filtro das Estrelas
+        $star_products = $products->getListOfStars($filters);
+
+        foreach($array['stars'] as $skey => $sitem) {
+
+            foreach($star_products as $sproduct) {
+
+                if ($sproduct['rating'] == $skey) {
+                    $array['stars'][$skey] = $sproduct['c'];
+                }
+
+            }
+
+        }
+
+        // Criando filtro das Promoções
+        $array['sale'] = $products->getSaleCount($filters);
 
         return $array;
     }

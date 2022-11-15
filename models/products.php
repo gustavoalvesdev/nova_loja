@@ -4,7 +4,37 @@ namespace Models;
 
 use Core\Model;
 
-class Products extends Model {
+class Products extends Model 
+{
+
+    public function getSaleCount($filters = array())
+    {
+        $where = $this->buildWhere($filters);
+
+        $where[] = 'sale = "1"';
+
+        $sql = "SELECT 
+        COUNT(*) AS c
+        FROM products
+        WHERE " . implode(' AND ', $where);
+        $sql = $this->db->prepare($sql);
+
+        $this->bindWhere($filters, $sql);
+
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+
+            $sql = $sql->fetch();
+
+            return $sql['c'];
+
+        } else {
+
+            return '0';
+
+        }
+    }
 
     public function getMaxPrice($filters = array())
     {
@@ -35,7 +65,32 @@ class Products extends Model {
         }
     }
 
-    public function getListOfBrands($filters = array()) {
+    public function getListOfStars($filters = array())
+    {
+        $array = array();
+
+        $where = $this->buildWhere($filters);
+
+        $sql = "SELECT 
+        rating,
+        COUNT(id) AS c
+        FROM products
+        WHERE " . implode(' AND ', $where) . "
+        GROUP BY rating";
+        $sql = $this->db->prepare($sql);
+
+        $this->bindWhere($filters, $sql);
+
+        $sql->execute();
+
+        if($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+
+    public function getListOfBrands($filters = array()) 
+    {
 
         $array = array();
 

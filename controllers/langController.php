@@ -1,8 +1,10 @@
 <?php 
 
 namespace Controllers;
+use Core\Controller;
 
-class LangController extends Controller {
+class LangController extends Controller 
+{
 
 	public function __construct() {
 		parent::__construct();
