@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Jan-2023 às 22:24
+-- Tempo de geração: 25-Fev-2023 às 06:16
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.1.12
 
@@ -192,7 +192,9 @@ INSERT INTO `products_options` (`id`, `id_product`, `id_option`, `p_value`) VALU
 (2, 1, 2, '23cm'),
 (3, 1, 4, '21'),
 (4, 2, 1, 'Azul'),
-(5, 2, 2, '19cm');
+(5, 2, 2, '19cm'),
+(6, 3, 1, 'Vermelho'),
+(7, 3, 2, '19cm');
 
 -- --------------------------------------------------------
 
@@ -394,7 +396,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT de tabela `products_options`
 --
 ALTER TABLE `products_options`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `purchases`
