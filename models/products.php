@@ -1,11 +1,46 @@
-<?php 
+<?php
 
 namespace Models;
 
 use Core\Model;
 
-class Products extends Model 
+class Products extends Model
 {
+
+    public function getAvailableOptions($filters = array())
+    {
+        $groups = array();
+        $ids = array();
+
+        $where = $this->buildWhere($filters);
+
+        $sql = "SELECT 
+        id, options
+        FROM products
+        WHERE " . implode(' AND ', $where);
+
+        $sql = $this->db->prepare($sql);
+
+        $this->bindWhere($filters, $sql);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            foreach ($sql->fetchAll() as $product) {
+                $ops = explode(',', $product['options']);
+                $ids[] = $product['id'];
+
+                foreach ($ops as $op) {
+                    if (!in_array($op, $groups)) {
+                        $groups[] = $op;
+                    }
+                }
+            }
+        }
+
+        $options = $this->getAvailableValuesFromOptions($groups, $ids);
+
+        return $options;
+    }
 
     public function getSaleCount($filters = array())
     {
@@ -28,11 +63,9 @@ class Products extends Model
             $sql = $sql->fetch();
 
             return $sql['c'];
-
         } else {
 
             return '0';
-
         }
     }
 
@@ -57,11 +90,9 @@ class Products extends Model
             $sql = $sql->fetch();
 
             return $sql['price'];
-
         } else {
 
             return '0';
-
         }
     }
 
@@ -83,13 +114,13 @@ class Products extends Model
 
         $sql->execute();
 
-        if($sql->rowCount() > 0) {
+        if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
         }
         return $array;
     }
 
-    public function getListOfBrands($filters = array()) 
+    public function getListOfBrands($filters = array())
     {
 
         $array = array();
@@ -108,14 +139,14 @@ class Products extends Model
 
         $sql->execute();
 
-        if($sql->rowCount() > 0) {
+        if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
         }
         return $array;
-
     }
 
-    public function getList($offset = 0, $limit = 3, $filters = array()) {
+    public function getList($offset = 0, $limit = 3, $filters = array())
+    {
         $array = array();
 
         $where = $this->buildWhere($filters);
@@ -135,22 +166,21 @@ class Products extends Model
 
         $sql->execute();
 
-        if($sql->rowCount() > 0) {
-            
+        if ($sql->rowCount() > 0) {
+
             $array = $sql->fetchAll();
 
-            foreach($array as $key => $item) {
+            foreach ($array as $key => $item) {
 
                 $array[$key]['images'] = $this->getImagesByProductId($item['id']);
-
             }
         }
 
         return $array;
-
     }
 
-    public function getTotal($filters = array()) {
+    public function getTotal($filters = array())
+    {
 
         $where = $this->buildWhere($filters);
 
@@ -168,7 +198,8 @@ class Products extends Model
         return $sql['c'];
     }
 
-    public function getImagesByProductId($id) {
+    public function getImagesByProductId($id)
+    {
 
         $array = array();
 
@@ -182,7 +213,6 @@ class Products extends Model
         }
 
         return $array;
-
     }
 
     private function buildWhere($filters)
@@ -204,5 +234,4 @@ class Products extends Model
             $sql->bindValue(':id_category', $filters['category']);
         }
     }
-
 }

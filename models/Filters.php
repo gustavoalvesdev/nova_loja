@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 namespace Models;
 
 use Core\Model;
 
-class Filters extends Model 
+class Filters extends Model
 {
 
-    public function getFilters($filters = array()) 
+    public function getFilters($filters = array())
     {
 
         $products = new Products();
@@ -32,19 +32,19 @@ class Filters extends Model
         $brand_products = $products->getListOfBrands($filters);
 
         // Criando filtro de Marcas
-        foreach($array['brands'] as $bKey => $bitem) {
+        foreach ($array['brands'] as $bKey => $bitem) {
 
             $array['brands'][$bKey]['count'] = '0';
 
-            foreach($brand_products as $bproduct) {
+            foreach ($brand_products as $bproduct) {
                 if ($bproduct['id_brand'] == $bitem['id']) {
                     $array['brands'][$bKey]['count'] = $bproduct['c'];
                 }
             }
 
-             if ($array['brands'][$bKey]['count'] == '0') {
+            if ($array['brands'][$bKey]['count'] == '0') {
                 unset($array['brands'][$bKey]);
-             }
+            }
         }
 
         // Criando filtro de Preço
@@ -53,22 +53,22 @@ class Filters extends Model
         // Criando filtro das Estrelas
         $star_products = $products->getListOfStars($filters);
 
-        foreach($array['stars'] as $skey => $sitem) {
+        foreach ($array['stars'] as $skey => $sitem) {
 
-            foreach($star_products as $sproduct) {
+            foreach ($star_products as $sproduct) {
 
                 if ($sproduct['rating'] == $skey) {
                     $array['stars'][$skey] = $sproduct['c'];
                 }
-
             }
-
         }
 
         // Criando filtro das Promoções
         $array['sale'] = $products->getSaleCount($filters);
 
+        // Criando filtro das Opções
+        $array['options'] = $products->getAvailableOptions($filters);
+
         return $array;
     }
-
 }
