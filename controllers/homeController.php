@@ -27,7 +27,9 @@ class HomeController extends Controller {
 
 		$filters = array();
 
-		$filters = array();
+		if (!empty($_GET['filter']) && is_array($_GET['filter'])) {
+			$filters = $_GET['filter'];
+		}
 
 		$currentPage = 1;
 		$offset = 0;
@@ -47,7 +49,7 @@ class HomeController extends Controller {
 		$dados['categories'] = $categories->getList();
 
 		$dados['filters'] = $f->getFilters($filters);
-
+		$dados['filters_selected'] = $filters;
 
 		$this->loadTemplate('home', $dados);
 
