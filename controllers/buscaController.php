@@ -28,6 +28,7 @@ class BuscaController extends Controller {
         if (!empty($_GET['s'])) {
 
             $searchTerm = addslashes($_GET['s']);
+            $category = addslashes($_GET['category']);
 
             $filters = array();
 
@@ -36,6 +37,7 @@ class BuscaController extends Controller {
             }
 
             $filters['searchTerm'] = $searchTerm;
+            $filters['category'] = $category;
 
             $currentPage = 1;
             $offset = 0;
@@ -58,6 +60,7 @@ class BuscaController extends Controller {
             $dados['filters_selected'] = $filters;
 
             $dados['searchTerm'] = $searchTerm;
+            $dados['category'] = $category;
 
             $this->loadTemplate('busca', $dados);
         } else {

@@ -2,6 +2,10 @@
 
 require 'environment.php';
 
+/**
+ * Rever a aula dos preços
+ */
+
 global $config;
 global $db;
 

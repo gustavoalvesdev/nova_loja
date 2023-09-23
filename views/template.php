@@ -50,12 +50,13 @@
                             <select name="category">
                                 <option value=""><?= $this->lang->get('ALLCATEGORIES'); ?></option>
                                 <?php foreach ($viewData['categories'] as $cat) : ?>
-                                <option value="<?= $cat['id']; ?>"><?php echo $cat['name']; ?></option> 
+                                <option <?php echo (isset($viewData['category']) && $viewData['category'] == $cat['id']) ? 'selected' : ''; ?> value="<?= $cat['id']; ?>"><?php echo $cat['name']; ?></option> 
                                 <?php
                                     if (!empty($cat['subs']) && count($cat['subs']) > 0) {
                                         $this->loadView('search_subcategory', array(
                                             'subs' => $cat['subs'],
-                                            'level' => 1
+                                            'level' => 1,
+                                            'category' => $viewData['category']
                                         ));
                                     }
                                     ?>
