@@ -277,6 +277,10 @@ class Products extends Model
             $where[] = "id IN (select id_product from products_options where products_options.p_value IN ('".implode("','", $filters['options'])."'))";
         }
 
+        if (!empty($filters['searchTerm'])) {
+            $where[] = "name LIKE :searchTerm";
+        }
+
         return $where;
     }
 
@@ -284,6 +288,18 @@ class Products extends Model
     {
         if (!empty($filters['category'])) {
             $sql->bindValue(':id_category', $filters['category']);
+        }
+
+        if (!empty($filters['slider0'])) {
+            $sql->bindValue(':slider0', $filters['slider0']);
+        }
+
+        if (!empty($filters['slider1'])) {
+            $sql->bindValue(':slider1', $filters['slider1']);
+        }
+
+        if (!empty($filters['searchTerm'])) {
+            $sql->bindValue(':searchTerm', '%' . $filters['searchTerm'] . '%');
         }
     }
 }
