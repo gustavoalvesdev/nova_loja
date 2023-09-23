@@ -129,6 +129,9 @@
 
                             <form method="GET">
 
+                                <input type="hidden" name="s" value="<?=  $viewData['searchTerm'] ?>" />
+                                <input type="hidden" name="category" value="<?= $viewData['category'] ?>" />
+
                                 <div class="filterbox">
                                     <div class="filtertitle"><?php $this->lang->get('BRANDS'); ?></div>
                                     <div class="filtercontent">
