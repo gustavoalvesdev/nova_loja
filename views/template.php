@@ -129,8 +129,8 @@
 
                             <form method="GET">
 
-                                <input type="hidden" name="s" value="<?=  $viewData['searchTerm'] ?>" />
-                                <input type="hidden" name="category" value="<?= $viewData['category'] ?>" />
+                                <input type="hidden" name="s" value="<?php if(isset($viewData['searchTerm'])) { echo $viewData['searchTerm']; } ?>" />
+                                <input type="hidden" name="category" value="<?php if(isset($viewData['category'])) {echo $viewData['category']; } ?>" />
 
                                 <div class="filterbox">
                                     <div class="filtertitle"><?php $this->lang->get('BRANDS'); ?></div>
@@ -152,7 +152,8 @@
                                 <div class="filterbox">
                                     <div class="filtertitle"><?php $this->lang->get('PRICE'); ?></div>
                                     <div class="filtercontent">
-
+                                        <input type="hidden" id="slider0" name="filter[slider0]" value="<?= $viewData['filters']['slider0']; ?>" />
+                                        <input type="hidden" id="slider1" name="filter[slider1]" value="<?= $viewData['filters']['slider1']; ?>" />
                                         <input type="text" id="amount" readonly>
 
                                         <div id="slider-range"></div>
@@ -279,7 +280,7 @@
                         <div class="widget">
                             <h1><?= $this->lang->get('FEATUREDPRODUCTS'); ?></h1>
                             <div class="widget_body">
-                                ...
+                                <?php $this->loadView('widget_item', array('list' => $viewData['widget_featured1'])); ?>
                             </div>
                         </div>
                     </aside>
@@ -295,7 +296,7 @@
                     <div class="widget">
                         <h1><?= $this->lang->get('FEATUREDPRODUCTS'); ?></h1>
                         <div class="widget_body">
-                            ...
+                            <?php $this->loadView('widget_item', array('list' => $viewData['widget_featured2'])); ?>
                         </div>
                     </div>
                 </div>
@@ -303,7 +304,7 @@
                     <div class="widget">
                         <h1><?= $this->lang->get('ONSALEPRODUCTS'); ?></h1>
                         <div class="widget_body">
-                            ...
+                            <?php $this->loadView('widget_item', array('list' => $viewData['widget_sale'])); ?>
                         </div>
                     </div>
                 </div>
@@ -311,7 +312,7 @@
                     <div class="widget">
                         <h1><?= $this->lang->get('TOPRATEDPRODUCTS'); ?></h1>
                         <div class="widget_body">
-                            ...
+                            <?php $this->loadView('widget_item', array('list' => $viewData['widget_toprated'])); ?>
                         </div>
                     </div>
                 </div>
@@ -398,7 +399,6 @@
     <script type="text/javascript">
     var BASE_URL = '<?php echo BASE_URL; ?>';
     var maxslider = <?php echo $viewData['filters']['maxslider']; ?>;
-    var slidervalues = [100, 500];
     </script>
     <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-ui.min.js"></script>
