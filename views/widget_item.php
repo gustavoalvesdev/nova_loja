@@ -1,6 +1,6 @@
 <?php foreach($list as $widget_item): ?>
 <div class="widget_item">
-    <a href="#">
+    <a href="<?= BASE_URL ?>product/open/<?= $widget_item['id'] ?>">
         <div class="widget_info">
             <div class="widget_productname"><?= $widget_item['name'] ?></div>
             <!-- widget_productname -->
