@@ -13,6 +13,17 @@
         <?php endif; ?>
         <hr />
         <p><?= $product_info['description'] ?></p>
+        <hr />
+        De: <span class="price_from">R$ <?php echo number_format($product_info['price_from'], 2); ?></span><br />
+        <!-- price_from -->
+        Por: <span class="original_price">R$ <?php echo number_format($product_info['price'], 2); ?></span>
+        <!-- original_price -->
+
+        <form method="POST" class="addtocartform">
+            <button data-action="decrease">-</button><input type="text" name="qtd" value="1" class="addtocart_qt" disabled /><button data-action="increase">+</button> 
+            <input class="addtocart_submit" type="submit" value="<?php $this->lang->get('ADD_TO_CART'); ?>" />
+            <!-- addtocart_submit -->
+        </form>
     </div>
     <!-- col-sm-7 -->
 </div>
