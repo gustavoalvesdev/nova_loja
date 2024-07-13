@@ -37,6 +37,7 @@ class ProductController extends Controller
         if (count($info) > 0) {
 
             $dados['product_info'] = $info;
+            $dados['product_images'] = $products->getImagesByProductId($id);
 
             $dados['categories'      ] = $categories->getList();
     
