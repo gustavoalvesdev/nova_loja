@@ -40,3 +40,27 @@
     <!-- col-sm-7 -->
 </div>
 <!-- row -->
+<hr/>
+<div class="row">
+    <div class="col-sm-6">
+        <h2><?php echo $this->lang->get('PRODUCT_SPECIFICATIONS'); ?></h2>
+        <?php foreach($product_options as $po): ?>
+            <strong><?php echo $po['name']; ?></strong>: <?php echo $po['value']; ?><br/>
+        <?php endforeach; ?>
+    </div>
+    <!-- col-sm-6 -->
+    <div class="col-sm-6">
+        <h3><?php echo $this->lang->get('PRODUCT_REVIEWS'); ?></h3>
+        <?php foreach($product_rates as $rate): ?>
+            <strong><?php echo $rate['user_name']; ?></strong> -
+                <?php for ($q = 0; $q < intval($rate['points']); $q++):  ?>
+                    <img src="<?= BASE_URL ?>assets/images/star.png" border="0" height="15" />
+                <?php endfor; ?>
+                <br />
+                "<?php echo $rate['comment']; ?>"
+            <br />
+        <?php endforeach; ?>
+    </div>
+    <!-- col-sm-6 -->
+</div>
+<!-- row -->

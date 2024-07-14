@@ -38,6 +38,8 @@ class ProductController extends Controller
 
             $dados['product_info'] = $info;
             $dados['product_images'] = $products->getImagesByProductId($id);
+            $dados['product_options'] = $products->getOptionsByProductId($id);
+            $dados['product_rates'] = $products->getRates($id, 5);
 
             $dados['categories'      ] = $categories->getList();
     
