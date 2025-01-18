@@ -5,6 +5,8 @@ namespace Controllers;
 use Core\Controller;
 use Models\Products;
 use Models\Categories;
+use Models\Filters;
+use Models\Store;
 
 class CategoriesController extends Controller {
 
@@ -21,12 +23,12 @@ class CategoriesController extends Controller {
 	}
 
     public function enter($id = 0) {
-
-
-			$dados = array();
+			$store = new Store();
 	
 			$products = new Products();
 			$categories = new Categories();
+			$f = new Filters();
+			$dados = $store->getTemplateData();
 	
 			$dados['category_name'] = $categories->getCategoryName($id);
 	
@@ -54,8 +56,15 @@ class CategoriesController extends Controller {
 				$dados['numberOfPages'] = ceil($dados['totalItems'] / $limit);
 				$dados['currentPage'] = $currentPage;
 				$dados['id_category'] = $id;
-
 				$dados['categories'] = $categories->getList();
+
+				$dados['filters'] = $f->getFilters($filters);
+				$dados['filters_selected'] = $filters;
+				$dados['searchTerm'] = '';
+				$dados['category'] = '';
+
+	
+				$dados['sidebar'] = true;
 		
 				$this->loadTemplate('categories', $dados);
 			} else {

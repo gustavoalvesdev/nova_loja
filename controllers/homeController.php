@@ -6,6 +6,7 @@ use Core\Controller;
 use Models\Products;
 use Models\Categories;
 use Models\Filters;
+use Models\Store;
 
 class HomeController extends Controller {
 
@@ -18,12 +19,14 @@ class HomeController extends Controller {
 	}
 
 	public function index() {
-
-		$dados = array();
+		$store = new Store();
 
 		$products = new Products();
 		$categories = new Categories();
 		$f = new Filters();
+
+		$dados = $store->getTemplateData();
+		
 
 		$filters = array();
 
@@ -48,13 +51,13 @@ class HomeController extends Controller {
 
 		$dados['categories'      ] = $categories->getList();
 
-		$dados['widget_featured1'] = $products->getList(0, 5, array('featured' => '1'), true);
-		$dados['widget_featured2'] = $products->getList(0, 3, array('featured' => '1'), true);
-		$dados['widget_sale'     ] = $products->getList(0, 3, array('sale' => '1'), true);
-		$dados['widget_toprated' ] = $products->getList(0, 3, array('toprated' => '1'));
-
 		$dados['filters'         ] = $f->getFilters($filters);
 		$dados['filters_selected'] = $filters;
+
+		$dados['searchTerm'] = '';
+		$dados['category'] = '';
+
+		$dados['sidebar'] = true;
 
 		$this->loadTemplate('home', $dados);
 

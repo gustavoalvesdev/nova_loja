@@ -6,6 +6,7 @@ use Core\Controller;
 use Models\Products;
 use Models\Categories;
 use Models\Filters;
+use Models\Store;
 
 class BuscaController extends Controller {
 
@@ -18,12 +19,13 @@ class BuscaController extends Controller {
 	}
 
 	public function index() {
-
-		$dados = array();
+        $store = new Store();
 
 		$products = new Products();
 		$categories = new Categories();
 		$f = new Filters();
+        
+		$dados = $store->getTemplateData();
 
         if (!empty($_GET['s'])) {
 
@@ -54,13 +56,13 @@ class BuscaController extends Controller {
             $dados['numberOfPages'] = ceil($dados['totalItems'] / $limit);
             $dados['currentPage'] = $currentPage;
 
-            $dados['categories'] = $categories->getList();
-
             $dados['filters'] = $f->getFilters($filters);
             $dados['filters_selected'] = $filters;
 
             $dados['searchTerm'] = $searchTerm;
             $dados['category'] = $category;
+
+            $dados['sidebar'] = true;
 
             $this->loadTemplate('busca', $dados);
         } else {
