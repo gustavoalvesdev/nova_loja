@@ -31,7 +31,9 @@
         Por: <span class="original_price">R$ <?php echo number_format($product_info['price'], 2); ?></span>
         <!-- original_price -->
 
-        <form method="POST" class="addtocartform">
+        <form method="POST" class="addtocartform" action="<?php echo BASE_URL; ?>cart/add">
+            <input type="hidden" name="id_product" value="<?php echo $product_info['id']; ?>" />
+            <input type="hidden" name="qt_product" value="1" />
             <button data-action="decrease">-</button><input type="text" name="qtd" value="1" class="addtocart_qt" disabled /><button data-action="increase">+</button> 
             <input class="addtocart_submit" type="submit" value="<?php $this->lang->get('ADD_TO_CART'); ?>" />
             <!-- addtocart_submit -->

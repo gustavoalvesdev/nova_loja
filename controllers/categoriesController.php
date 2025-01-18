@@ -10,8 +10,6 @@ use Models\Store;
 
 class CategoriesController extends Controller {
 
-	private $user;
-
 	public function __construct() {
 
 		parent::__construct();
