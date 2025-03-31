@@ -1,13 +1,5 @@
 <?php 
 
-namespace Controllers;
-
-use Core\Controller;
-use Models\Products;
-use Models\Categories;
-use Models\Filters;
-use Models\Store;
-
 class CategoriesController extends Controller {
 
 	public function __construct() {

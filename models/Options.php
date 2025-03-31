@@ -1,9 +1,5 @@
 <?php
 
-namespace Models;
-
-use Core\Model;
-
 class Options extends Model
 {
     public function getName($id)

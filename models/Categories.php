@@ -1,8 +1,4 @@
-<?php 
-
-namespace Models;
-
-use Core\Model;
+<?php
 
 class Categories extends Model 
 {

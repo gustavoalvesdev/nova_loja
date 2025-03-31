@@ -1,11 +1,5 @@
 <?php
 
-namespace Models;
-
-use Core\Model;
-use Models\Categories;
-use Models\Products;
-
 class Store extends Model
 {
 

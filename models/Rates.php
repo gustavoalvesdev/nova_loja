@@ -1,9 +1,5 @@
 <?php
 
-namespace Models;
-
-use Core\Model;
-
 class Rates extends Model {
 
     public function getRates($id, $qt) {

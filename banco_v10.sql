@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/09/2023 às 22:57
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 31/03/2025 às 18:18
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -257,6 +257,13 @@ CREATE TABLE `rates` (
   `comment` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Despejando dados para a tabela `rates`
+--
+
+INSERT INTO `rates` (`id`, `id_product`, `id_user`, `date_rated`, `points`, `comment`) VALUES
+(1, 1, 1, '2025-03-31 18:14:22', 3, 'Produto até que é interessante. Vou comprar mais.');
+
 -- --------------------------------------------------------
 
 --
@@ -265,9 +272,17 @@ CREATE TABLE `rates` (
 
 CREATE TABLE `users` (
   `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL DEFAULT '',
   `password` varchar(32) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Despejando dados para a tabela `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'Gustavo', 'gustavoalvesdasilva@outlook.com', '202cb962ac59075b964b07152d234b70');
 
 --
 -- Índices para tabelas despejadas
@@ -425,13 +440,13 @@ ALTER TABLE `purchase_transactions`
 -- AUTO_INCREMENT de tabela `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,10 +1,5 @@
 <?php
 
-namespace Models;
-
-use Core\Model;
-use Models\Rates;
-
 class Products extends Model
 {
 

@@ -1,8 +1,5 @@
 <?php 
 
-namespace Controllers;
-use Core\Controller;
-
 class LangController extends Controller 
 {
 
