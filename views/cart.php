@@ -5,7 +5,8 @@
         <th width="100">Imagem</th>
         <th>Nome</th>
         <th width="50">Qtd.</th>
-        <th width="150">Preço</th>
+        <th width="120">Preço</th>
+        <th width="20"></th>
     </tr>
     <?php $subtotal = 0; ?>
     <?php foreach($list as $item): ?>
@@ -15,6 +16,7 @@
         <td><?= $item['name'] ?></td>
         <td><?= $item['qt'] ?></td>
         <td>R$ <?= number_format($item['price'], 2, ',', ';') ?></td>
+        <td><a href="<?= BASE_URL ?>cart/del/<?= $item['id'] ?>"><img src="<?= BASE_URL ?>assets/images/delete.png" width="15"></a></td>
     </tr>
     <?php endforeach; ?>
     <tr>

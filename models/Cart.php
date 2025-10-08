@@ -23,4 +23,14 @@ class Cart extends Model {
 
         return $array;
     }
+
+    public function getSubtotal() {
+        $list = $this->getList();
+
+        $subtotal = 0;
+        foreach($list as $item) {
+            $subtotal += (floatval($item['price']) * intval($item['qt']));
+        }
+        return $subtotal;
+    }
 }

@@ -28,6 +28,15 @@ class CartController extends Controller {
 
 	}
 
+    public function del($id) {
+
+        if (!empty($id)) {
+            unset($_SESSION['cart'][$id]);
+        }
+        header('Location: ' . BASE_URL . 'cart');
+        exit;
+    }
+
     public function add()
     {
         if (!empty($_POST['id_product'])) {
