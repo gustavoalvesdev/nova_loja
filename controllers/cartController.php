@@ -13,7 +13,16 @@ class CartController extends Controller {
 
 		$products = new Products();
 
+        $cart = new Cart();
+
+        if (!isset($_SESSION['cart']) || isset($_SESSION['cart']) && count($_SESSION['cart']) == 0) {
+            header('Location: ' . BASE_URL);
+            exit;
+        }
+
 		$dados = $store->getTemplateData();
+
+        $dados['list'] = $cart->getList();
 
 		$this->loadTemplate('cart', $dados);
 

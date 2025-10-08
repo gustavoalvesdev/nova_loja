@@ -3,6 +3,22 @@
 class Products extends Model
 {
 
+    public function getInfo($id) {
+        $array = array();
+
+        $sql = $this->db->prepare("SELECT name, price FROM products WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetch();
+            $images = current($this->getImagesByProductId($id));
+            $array['image'] = $images['url'];
+        }
+
+        return $array;
+    }
+
     public function getAvailableOptions($filters = array())
     {
         $groups = array();
