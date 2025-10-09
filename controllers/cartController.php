@@ -10,10 +10,15 @@ class CartController extends Controller {
     public function index() 
     {
 		$store = new Store();
-
 		$products = new Products();
-
         $cart = new Cart();
+        $cep = '';
+        $shipping = array();
+
+        if (!empty($_POST['cep'])) {
+            $cep = intval($_POST['cep']);
+            $shipping = $cart->shippingCalculate($cep);
+        }
 
         if (!isset($_SESSION['cart']) || isset($_SESSION['cart']) && count($_SESSION['cart']) == 0) {
             header('Location: ' . BASE_URL);
@@ -22,6 +27,7 @@ class CartController extends Controller {
 
 		$dados = $store->getTemplateData();
 
+        $dados['shipping'] = $shipping;
         $dados['list'] = $cart->getList();
 
 		$this->loadTemplate('cart', $dados);
